@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server"
+    "start": "node server",
+    "dev": "nodemon server"
   },
   "author": "",
   "license": "ISC",
@@ -20,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/ColinSprows/note-taker/issues"
   },
-  "homepage": "https://github.com/ColinSprows/note-taker#readme"
+  "homepage": "https://github.com/ColinSprows/note-taker#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
 }

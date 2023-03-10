@@ -23,7 +23,7 @@ apiRouter.post('/notes', (req, res) => {
     tasks.push(newTask)
     const tasksList = JSON.stringify(tasks , null, 2);
     fs.writeFile('./db/db.json', tasksList , (err) =>
-    err ? console.error(err) : console.info(`Review for ${newTask.title} has been added`)
+    err ? console.error(err) : console.log(`Review for ${newTask.title} has been added`)
   )
 });
 // read
@@ -34,5 +34,14 @@ apiRouter.post('/notes', (req, res) => {
 
 // delete
 // DELETE
+apiRouter.delete('/notes/:id', (req, res) => {
+    const id = req.params.id
+    const taskID = tasks.findIndex(task => task.id === parseInt(id));
+    tasks.splice(taskID, 1);
+    fs.writeFile('./db/db.json', JSON.stringify(tasks), (err) =>
+      err ? console.error(err) : console.log(`Note ${taskID} deleted.`)
+    )
+    res.end(); 
+})
 
 module.exports = apiRouter;

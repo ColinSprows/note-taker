@@ -1,8 +1,11 @@
 // DEPENDENCIES
 const express = require('express');
+const path = require('path');
+const { api, html } = require('./routes');
+
 
 // DATA
-const todos = [
+const tasks = [
     {
         task: "buy milk",
         priority: 3,
@@ -15,19 +18,21 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // MIDDLEWARE
+// express.json
+app.use(express.json());
+// express.urlencoded
+app.use(express.urlencoded({extended: false}))
+// express.static
+app.use(express.static(path.join(__dirname, 'public')))
 
-// ROUTES
-// create
-// POST
 
-// read
-// GET
+// ROUTERS
+// api router
+app.use('/api', api);
+// html router
+app.use('/', html);
 
-// update
-// PUT
 
-// delete
-// DELETE
 
 // INIT
 app.listen(PORT, () => console.log(`Now listening on PORT: ${PORT}`));
